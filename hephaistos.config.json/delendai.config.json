@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/@hephaistos/core/schema/hephaistos.config.schema.json",
+  "cacheDir": ".cache/hephaistos",
+  "docsDir": "docs/hephaistos",
+  "development": {
+    "profile": "shared-checkout-merge",
+    "branches": {
+      "integration": "main",
+      "release": "main"
+    }
+  }
+}

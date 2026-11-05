@@ -1,0 +1,8 @@
+tsconfig.tsbuildinfo
+
+# hephaistos is a standalone peer clone (de-submoduled 2026-10-22)
+/hephaistos/
+node_modules/
+.ergane/
+.super-ralph/
+tsconfig.tsbuildinfo
