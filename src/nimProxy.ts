@@ -1,5 +1,8 @@
 /**
- * nimProxy — flock integration for super-ralph (nim-proxy absorbed by flock 2026-09-17).
+ * nimProxy — flock integration for super-ralph. The router is the mimetite
+ * estate router (from-scratch Bun router, loopback-trusted; the vendored
+ * nimproxy binary was absorbed by flock 2026-09-17). NIM in general means
+ * NVIDIA Inference Microservices (the NVIDIA provider lane), NOT this proxy.
  *
  * Routes every model call through the local flock proxy (default
  * http://127.0.0.1:25104) instead of direct provider APIs:
@@ -10,7 +13,7 @@
  * - `proxyEnvOverrides()` builds the env overrides (NIM_BASE_URL,
  *   ANTHROPIC_BASE_URL, NVIDIA_API_KEY, NIM_MODEL) that make the `claude`
  *   NIM shim — and therefore every hestia-spawned agent — talk to the
- *   proxy. Keys travel in child-process env only; never written to files.
+ *   proxy (mimetite estate router). Keys travel in child-process env only; never written to files.
  * - `NimProxyKeyPool` lifts the AgentRegistry rate-limit pattern
  *   (rateLimitedUntil / isAvailable / recordRateLimit) for 429/backoff
  *   handling across keys.
@@ -46,7 +49,7 @@ export class NimProxyConfigError extends Error {
 export function resolveProxyApiKey(): string {
   const key =
     process.env.FLOCK_API_KEY ||
-    process.env.NIM_PROXY_API_KEY || // deprecated compat alias
+    process.env.MIMETITE_API_KEY || process.env.NIM_PROXY_API_KEY || // deprecated compat alias
     process.env.ANTHROPIC_API_KEY ||
     process.env.NVIDIA_API_KEY;
   if (!key || !key.trim()) {
@@ -75,9 +78,9 @@ export function resolveProxyConfig(): ProxyConfig {
     );
   }
   const baseUrl = (
-    process.env.FLOCK_BASE_URL || process.env.NIM_PROXY_BASE_URL || DEFAULT_PROXY_BASE_URL
+    process.env.FLOCK_BASE_URL || process.env.MIMETITE_BASE_URL || process.env.NIM_PROXY_BASE_URL || DEFAULT_PROXY_BASE_URL
   ).replace(/\/+$/, "").replace(/\/v1$/, "");
-  const model = process.env.FLOCK_MODEL || process.env.NIM_PROXY_MODEL || DEFAULT_PROXY_MODEL;
+  const model = process.env.FLOCK_MODEL || process.env.MIMETITE_MODEL || process.env.NIM_PROXY_MODEL || DEFAULT_PROXY_MODEL;
   return { baseUrl, apiKeys, model };
 }
 
@@ -296,13 +299,13 @@ export async function proxyChatCompletions(
       });
       if (resp.status === 429) {
         pool.recordRateLimit(key, parseRetryAfterMs(resp.headers.get("retry-after")));
-        lastError = new Error("nim-proxy rate limited (HTTP 429); rotating key");
+        lastError = new Error("mimetite router rate limited (HTTP 429); rotating key");
         continue;
       }
       if (!resp.ok) {
         const body = await resp.text().catch(() => "");
         if (resp.status === 400 && !stripReasoning) stripReasoning = true;
-        throw new Error("nim-proxy HTTP " + resp.status + ": " + body.slice(0, 300));
+        throw new Error("mimetite router HTTP " + resp.status + ": " + body.slice(0, 300));
       }
       const data = (await resp.json()) as any;
       const msg = data?.choices?.[0]?.message;
@@ -311,7 +314,7 @@ export async function proxyChatCompletions(
       // so a reasoning-only response is not misclassified as an empty
       // completion (the ghost-empty disease).
       const text: string = msg?.content || msg?.reasoning_content || msg?.reasoning || "";
-      if (!text.trim()) throw new Error("nim-proxy returned an empty completion");
+      if (!text.trim()) throw new Error("mimetite router returned an empty completion");
       pool.recordSuccess(key);
       return text;
     } catch (err: any) {
@@ -325,7 +328,7 @@ export async function proxyChatCompletions(
     ? " Earliest retry at " + new Date(retryAt).toISOString() + "."
     : "";
   throw new Error(
-    "nim-proxy: all " +
+    "mimetite router: all " +
       pool.size +
       " key(s) exhausted or rate-limited." +
       retryHint +

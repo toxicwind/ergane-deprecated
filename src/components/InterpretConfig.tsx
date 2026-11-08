@@ -77,7 +77,7 @@ export function InterpretConfig({
       ].join("\n")
     : "";
 
-  // Truncate oversized prompts: the nim-proxy route has token limits.
+  // Truncate oversized prompts: the mimetite router route has token limits.
   // The full prompt is saved as PROMPT.md in the workspace; the agent can
   // read it if needed. This keeps interpret-config within model limits.
   // Head+tail preservation: the tail usually holds the actual request while

@@ -238,6 +238,6 @@ describe("proxyChatCompletions", () => {
 
     await expect(
       proxyChatCompletions({ prompt: "hi", config: fakeConfig(["k1"]) })
-    ).rejects.toThrow("nim-proxy HTTP 500");
+    ).rejects.toThrow("mimetite router HTTP 500");
   });
 });
