@@ -1,6 +1,6 @@
 /**
  * nimProxy — flock integration for super-ralph. The router is the mimetite
- * estate router (from-scratch Bun router, loopback-trusted; the vendored
+ * Pens router (from-scratch Bun router, loopback-trusted; the vendored
  * nimproxy binary was absorbed by flock 2026-09-17). NIM in general means
  * NVIDIA Inference Microservices (the NVIDIA provider lane), NOT this proxy.
  *
@@ -13,7 +13,7 @@
  * - `proxyEnvOverrides()` builds the env overrides (NIM_BASE_URL,
  *   ANTHROPIC_BASE_URL, NVIDIA_API_KEY, NIM_MODEL) that make the `claude`
  *   NIM shim — and therefore every hestia-spawned agent — talk to the
- *   proxy (mimetite estate router). Keys travel in child-process env only; never written to files.
+ *   proxy (mimetite Pens router). Keys travel in child-process env only; never written to files.
  * - `NimProxyKeyPool` lifts the AgentRegistry rate-limit pattern
  *   (rateLimitedUntil / isAvailable / recordRateLimit) for 429/backoff
  *   handling across keys.

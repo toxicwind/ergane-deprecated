@@ -55,7 +55,7 @@ export function renderWorkflowFile(params: RenderWorkflowParams): string {
   } else if (runningFromSource) {
     importPrefix = superRalphSourceRoot + "/src";
   } else {
-    importPrefix = "@estate/ergane";
+    importPrefix = "@Pens/ergane";
   }
 
   return `import React from "react";

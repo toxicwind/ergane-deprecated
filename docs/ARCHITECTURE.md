@@ -88,7 +88,7 @@ Portable wrapper replaces hardcoded paths:
 Old: source /home/toxic/.secrets
 New: candidates = [ERGANE_SECRETS_PATH, ~/.secrets, ~/.config/ergane/secrets, .env], first found wins, caller-provided env wins over file
 
-Old: THRESHER_BIN = "/home/toxic/pens/estate/ranch/range/bin/thresher"
+Old: THRESHER_BIN = "/home/toxic/pens/Pens/ranch/range/bin/thresher"
 New: THRESHER_BIN env var, default "thresher" in PATH
 
 Old: NIM_SHIM_REAL = "/home/toxic/.local/bin/claude.nim-shim-real"

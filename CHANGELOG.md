@@ -24,4 +24,4 @@
 - Portable shim env vars: `ERGANE_SECRETS_PATH`, `THRESHER_BIN`, `THRESHER_CONFIG`, `CLAUDE_REAL_BIN`
 
 ### Original lineage
-- `super-ralph@0.2.5` (William Cory / roninjin10) → `@estate/ergane@1.0.0`
+- `super-ralph@0.2.5` (William Cory / roninjin10) → `@Pens/ergane@1.0.0`

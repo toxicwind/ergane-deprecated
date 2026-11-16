@@ -122,7 +122,7 @@ export async function runWorkflow(opts: RunWorkflowOpts): Promise<void> {
   const detectedAgents = { claude: true, codex: false, gh: true };
 
   if (!headless) {
-    console.log(`🚀 Estate Ergane — Multi-Agent Ticket Orchestration`);
+    console.log(`🚀 Pens Ergane — Multi-Agent Ticket Orchestration`);
     console.log(`📁 Repo: ${repoRoot}`);
     console.log(`📝 Prompt: ${promptSourcePath || "inline"}`);
     console.log(`💾 Database: ${join(repoRoot, ".hestia", "db.sqlite")}`);
@@ -170,7 +170,7 @@ export async function runWorkflow(opts: RunWorkflowOpts): Promise<void> {
 
   const effectivePreload = useSharedPreload ? superRalphPreload : preloadPath;
 
-  // Estate 25xxx fleet convention (AGENTS.md, ports.env): hestia gateway
+  // Pens 25xxx fleet convention (AGENTS.md, ports.env): hestia gateway
   // binds the allocated port (25280) instead of the default 7331 so it lives
   // in the supervised range. Only meaningful when a resident gateway boots;
   // `up` ignores it if the run doesn't bring one up.

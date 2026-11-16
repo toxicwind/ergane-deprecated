@@ -22,7 +22,7 @@ live in **fluxling**: `pens/codeflux/products/fluxling`, subcommand
 [![Effect](https://img.shields.io/badge/Effect-4.0.0--beta.102-ff0000?style=flat-square)](https://effect.website)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](./CONTRIBUTING.md)
 
-**Ergane** is a hardened fork of [super-ralph](https://github.com/roninjin10/super-ralph) built for estate agent fleets — parallel ticket execution, speculative landing, and zero-merge-conflict orchestration on top of [Hestia / smthrs](https://github.com/roninjin10/hestia).
+**Ergane** is a hardened fork of [super-ralph](https://github.com/roninjin10/super-ralph) built for Pens agent fleets — parallel ticket execution, speculative landing, and zero-merge-conflict orchestration on top of [Hestia / smthrs](https://github.com/roninjin10/hestia).
 
 If your original fork was a mess of hardcoded `/home/toxic` paths, 1189-line CLI files, duplicate deps, and ranch-specific shims — this is the clean replacement you can `rm -rf` and drop in.
 
@@ -120,12 +120,12 @@ executing** the real `interpret-config` node instead of failing on import.
 
 ```bash
 # 1. Replace old mess with clean
-rm -rf ~/estate/ranch/ergane
-tar -xzf ergane-clean.tar.gz -C ~/estate/ranch/
-mv ~/estate/ranch/ergane-clean ~/estate/ranch/ergane
+rm -rf ~/Pens/ranch/ergane
+tar -xzf ergane-clean.tar.gz -C ~/Pens/ranch/
+mv ~/Pens/ranch/ergane-clean ~/Pens/ranch/ergane
 
 # 2. Install
-cd ~/estate/ranch/ergane
+cd ~/Pens/ranch/ergane
 bun install
 
 # 3. Check env (portable, no /home/toxic hardcoded)
@@ -164,7 +164,7 @@ export CLAUDE_REAL_BIN=~/.local/bin/claude.nim-shim-real
 - Git colocated repo (`jj git init --colocate`)
 
 ```bash
-bun add @estate/ergane
+bun add @Pens/ergane
 # or clone
 git clone https://github.com/roninjin10/super-ralph.git ergane
 cd ergane
@@ -296,7 +296,7 @@ CLAUDE_REAL_BIN=~/.local/bin/claude.nim-shim-real
 NIM_BASE_URL=http://127.0.0.1:25200/v1
 ```
 
-No more `/home/toxic/pens/estate/ranch/range/bin/thresher` hardcoded.
+No more `/home/toxic/pens/Pens/ranch/range/bin/thresher` hardcoded.
 
 ---
 
@@ -339,7 +339,7 @@ Tests moved from `src/` to `tests/`:
 
 MIT — see [LICENSE](./LICENSE)
 
-Original super-ralph lineage: William Cory → Ronin Jin → Estate Fleet
+Original super-ralph lineage: William Cory → Ronin Jin → Pens Fleet
 
 ---
 
@@ -371,6 +371,6 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md)
 ---
 
 <p align="center">
-  <b>🐴 Estate Ergane — Run 8 agents in parallel, land without conflicts</b><br/>
+  <b>🐴 Pens Ergane — Run 8 agents in parallel, land without conflicts</b><br/>
   <code>rm -rf ergane && tar -xzf ergane-clean.tar.gz && bun install && ergane "ship it"</code>
 </p>

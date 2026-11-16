@@ -1,5 +1,5 @@
 // hephaestos/providers/audit.js
-// Evidence provider: contract/doctrine checks against the estate rules.
+// Evidence provider: contract/doctrine checks against the Pens rules.
 // Modular — this owns "did we commit+push, clean tree, no dead code, pushed".
 
 import { gitState } from "./git.js";
